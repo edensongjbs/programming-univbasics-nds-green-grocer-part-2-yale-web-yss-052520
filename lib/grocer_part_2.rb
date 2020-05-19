@@ -12,6 +12,9 @@ def apply_coupons(cart, coupons)
          binding.pry
          if item_in_cart[:item]==coupon[:item]
            item_in_cart[:count]=item_in_cart[:count]-coupon[:num]
+           if item_in_cart[:count]<=0
+             item_in_cart=nil
+           end
            discounted_item={
              :name => "#{item_in_cart[:name]} W/COUPON",
              :price => coupon[:cost]/coupon[:num],
