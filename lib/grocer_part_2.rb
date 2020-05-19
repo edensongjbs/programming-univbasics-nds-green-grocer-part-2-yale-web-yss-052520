@@ -4,6 +4,24 @@ def apply_coupons(cart, coupons)
   # Consult README for inputs and outputs
   #
   # REMEMBER: This method **should** update cart
+   coupons.each {|coupon|
+     cart_of_discounted_items=[]
+     if find_item_by_name_in_collection(cart, coupon[:item])
+       cart.each { |item_in_cart|
+         if item_in_cart[:item]==coupon[:item]
+           item_in_cart[:count]=item_in_cart[:count]-coupon[:count]
+           discounted_item={
+             :name => "#{item_in_cart[:name]} W/COUPON",
+             :price => coupon[:cost]/coupon[:num],
+             :count => coupon[:num],
+             :clearance => item_in_cart[:clearance]
+           }
+           cart_of_discounted_items << discounted_item
+         end
+       }
+     end
+   }
+   cart=cart+cart_of_discounted_items
 end
 
 def apply_clearance(cart)
