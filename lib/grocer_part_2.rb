@@ -1,12 +1,13 @@
 require_relative './part_1_solution.rb'
+require 'pry'
 
 def apply_coupons(cart, coupons)
   # Consult README for inputs and outputs
   #
   # REMEMBER: This method **should** update cart
+  cart_of_discounted_items=[]
    coupons.each {|coupon|
-     cart_of_discounted_items=[]
-     if find_item_by_name_in_collection(cart, coupon[:item])
+     if find_item_by_name_in_collection(coupon[:item], cart)
        cart.each { |item_in_cart|
          if item_in_cart[:item]==coupon[:item]
            item_in_cart[:count]=item_in_cart[:count]-coupon[:count]
@@ -21,6 +22,7 @@ def apply_coupons(cart, coupons)
        }
      end
    }
+   binding.pry
    cart=cart+cart_of_discounted_items
 end
 
