@@ -9,6 +9,7 @@ def apply_coupons(cart, coupons)
    coupons.each {|coupon|
      if find_item_by_name_in_collection(coupon[:item], cart)
        cart.each { |item_in_cart|
+         binding.pry
          if item_in_cart[:item]==coupon[:item]
            item_in_cart[:count]=item_in_cart[:count]-coupon[:num]
            discounted_item={
@@ -22,7 +23,6 @@ def apply_coupons(cart, coupons)
        }
      end
    }
-   binding.pry
    cart=cart+cart_of_discounted_items
 end
 
