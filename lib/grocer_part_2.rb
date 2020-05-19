@@ -10,7 +10,7 @@ def apply_coupons(cart, coupons)
      if find_item_by_name_in_collection(coupon[:item], cart)
        cart.each { |item_in_cart|
          if item_in_cart[:item]==coupon[:item]
-           item_in_cart[:count]=item_in_cart[:count]-coupon[:count]
+           item_in_cart[:count]=item_in_cart[:count]-coupon[:num]
            discounted_item={
              :name => "#{item_in_cart[:name]} W/COUPON",
              :price => coupon[:cost]/coupon[:num],
